@@ -1,7 +1,5 @@
 const express = require ("express")
 const app = express()
-const fs = require("fs")
-const { json } = require("stream/consumers")
 
 app.use(express.json())
 

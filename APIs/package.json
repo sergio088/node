@@ -4,15 +4,18 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "api":"nodemon apifrases/server.js",
-    "apitempo":"nodemon apitempo/api.js"
+    "api": "nodemon apifrases/server.js",
+    "apitempo": "nodemon apitempo/api.js",
+    "futebol": "nodemon apifutebol/api.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
-  "dependencies": {
-    "express": "^4.21.2",
+  "devDependencies": {
     "nodemon": "^3.1.9"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
   }
 }
