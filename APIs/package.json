@@ -1,20 +1,18 @@
 {
-  "name": "apis-training",
+  "name": "apis",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "apif": "nodemon apifrases/server.js",
-    "apit": "nodemon apitempo/api.js"
+    "api":"nodemon apifrases/server.js",
+    "apitempo":"nodemon apitempo/api.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
-  "devDependencies": {
-    "nodemon": "^3.1.9"
-  },
   "dependencies": {
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "nodemon": "^3.1.9"
   }
 }
