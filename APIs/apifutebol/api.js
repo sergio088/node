@@ -1,29 +1,54 @@
 const express = require('express')
 const app = express()
+const ejs = require('ejs')
+const fs = require('fs')
+const path = require('path')
+
+
 
 app.use(express.json());
+app.set('view engine', 'ejs')
 
 const paises = {
-    Brasil: {pais:"Brasil", 
-    jogadores:{
-        Neymar:{jogador:'neymar',gols:'700',altura:'1.70'},
-        Pele:{jogador:'neymar',gols:'700',altura:'1.70'},
-        ronaldinho:{jogador:'neymar',gols:'700',altura:'1.70'},
-        ronaldo:{jogador:'ronaldo',gols:'700',altura:'1.70'}
-    }},
+    Brasil: {pais:"Brasil", },
     Italia: {pais:"Italia"},
     Alemanha: {pais:"Alemanha"},
-    Argentina: {pais:"Argentina",
-        jogadores:{
-            Maradona:{jogador:'Maradona',gols:'680',altura:'168'}
-        }
-        
-    },
+    Argentina: {pais:"Argentina",},
     França: {pais:"França"}
 }
 
-app.get('/copadomundo', (req,res)=>{
-    res.json(paises)
+const jogadores = {
+    Brasil:{
+        jogadores:{
+            Neymar:{jogador:'neymar',gols:'700',altura:'1.70'},
+            Pele:{jogador:'neymar',gols:'700',altura:'1.70'},
+            ronaldinho:{jogador:'neymar',gols:'700',altura:'1.70'},
+            ronaldo:{jogador:'ronaldo',gols:'700',altura:'1.70'}
+        }
+    },
+    Argentina:{
+        jogadores:{
+            Maradona:{jogador:'Maradona',gols:'680',altura:'168'}
+        }
+    }
+}
+
+
+app.get('/', (req, res)=>{
+    fs.readFile(
+        path.join(__dirname,'view','homepage'),
+        (err, content) =>{
+            if(err) throw err
+            res.end(content)
+        },
+    )
+})
+
+app.get('/:pais', (req,res)=>{
+    const pais = req.params.pais
+    if(jogadores[pais]){
+        res.json(jogadores[pais])
+    }
 })
 
 app.get('/copadomundo/:pais', (req, res) =>{
@@ -36,11 +61,8 @@ app.get('/copadomundo/:pais', (req, res) =>{
 app.get('/copadomundo/:pais/:jogador', (req, res) =>{
     const pais = req.params.pais 
         const jogador = req.params.jogador
-        if(paises[pais].jogadores[jogador]){
+           if(paises[pais].jogadores[jogador]){
             res.json(paises[pais].jogadores[jogador])
-        }
-        else{
-
         }
     
 })
