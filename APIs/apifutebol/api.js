@@ -7,47 +7,77 @@ const path = require('path')
 
 
 app.use(express.json());
+app.use(express.static('public'))
 app.set('view engine', 'ejs')
+app.set('views', path.join(__dirname, 'views'));
 
 const paises = {
-    Brasil: {pais:"Brasil", },
-    Italia: {pais:"Italia"},
-    Alemanha: {pais:"Alemanha"},
-    Argentina: {pais:"Argentina",},
-    França: {pais:"França"}
-}
-
-const jogadores = {
-    Brasil:{
-        jogadores:{
-            Neymar:{jogador:'neymar',gols:'700',altura:'1.70'},
-            Pele:{jogador:'neymar',gols:'700',altura:'1.70'},
-            ronaldinho:{jogador:'neymar',gols:'700',altura:'1.70'},
-            ronaldo:{jogador:'ronaldo',gols:'700',altura:'1.70'}
+    pais:'Brasil',
+    Brasil: {
+        pais: "Brasil",
+        jogadores: {
+            Neymar: { jogador: "Neymar", gols: 77, altura: "1.75m" },
+            ViniciusJunior: { jogador: "Vinícius Júnior", gols: 15, altura: "1.76m" },
+            Richarlison: { jogador: "Richarlison", gols: 25, altura: "1.84m" }
         }
     },
-    Argentina:{
-        jogadores:{
-            Maradona:{jogador:'Maradona',gols:'680',altura:'168'}
+    pais:'Argentina',
+    Argentina: {
+        pais: "Argentina",
+        jogadores: {
+            Messi: { jogador: "Lionel Messi", gols: 103, altura: "1.70m" },
+            DiMaria: { jogador: "Ángel Di María", gols: 29, altura: "1.80m" },
+            Lautaro: { jogador: "Lautaro Martínez", gols: 21, altura: "1.74m" }
+        }
+    },
+    pais:'França',
+    França: {
+        pais: "França",
+        jogadores: {
+            Mbappe: { jogador: "Kylian Mbappé", gols: 46, altura: "1.78m" },
+            Griezmann: { jogador: "Antoine Griezmann", gols: 44, altura: "1.76m" },
+            Giroud: { jogador: "Olivier Giroud", gols: 53, altura: "1.93m" }
+        }
+    },
+    pais:'Alemanha',
+    Alemanha: {
+        pais: "Alemanha",
+        jogadores: {
+            Muller: { jogador: "Thomas Müller", gols: 44, altura: "1.85m" },
+            Havertz: { jogador: "Kai Havertz", gols: 13, altura: "1.88m" },
+            Gnabry: { jogador: "Serge Gnabry", gols: 22, altura: "1.75m" }
+        }
+    },
+    pais:'Espanha',
+    Espanha: {
+        pais: "Espanha",
+        jogadores: {
+            Morata: { jogador: "Álvaro Morata", gols: 30, altura: "1.90m" },
+            Pedri: { jogador: "Pedri", gols: 5, altura: "1.74m" },
+            Gavi: { jogador: "Gavi", gols: 3, altura: "1.73m" }
+        }
+    },
+    pais:'Portugal',
+    Portugal: {
+        pais: "Portugal",
+        jogadores: {
+            CR7: { jogador: "Cristiano Ronaldo", gols: 128, altura: "1.87m" },
+            BrunoFernandes: { jogador: "Bruno Fernandes", gols: 17, altura: "1.79m" },
+            BernardoSilva: { jogador: "Bernardo Silva", gols: 10, altura: "1.73m" }
         }
     }
-}
+};
+
 
 
 app.get('/', (req, res)=>{
-    fs.readFile(
-        path.join(__dirname,'view','homepage'),
-        (err, content) =>{
-            if(err) throw err
-            res.end(content)
-        },
-    )
+    res.render('home', { paises: Object.keys(paises) });
 })
 
 app.get('/:pais', (req,res)=>{
     const pais = req.params.pais
     if(jogadores[pais]){
-        res.json(jogadores[pais])
+        
     }
 })
 
