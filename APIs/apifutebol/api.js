@@ -12,8 +12,9 @@ app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'));
 
 const paises = {
-    pais:'Brasil',
+    
     Brasil: {
+        seleçao:"Brasileira",
         pais: "Brasil",
         jogadores: {
             Neymar: { jogador: "Neymar", gols: 77, altura: "1.75m" },
@@ -21,8 +22,9 @@ const paises = {
             Richarlison: { jogador: "Richarlison", gols: 25, altura: "1.84m" }
         }
     },
-    pais:'Argentina',
+    
     Argentina: {
+        seleçao:"Argentina",
         pais: "Argentina",
         jogadores: {
             Messi: { jogador: "Lionel Messi", gols: 103, altura: "1.70m" },
@@ -30,8 +32,9 @@ const paises = {
             Lautaro: { jogador: "Lautaro Martínez", gols: 21, altura: "1.74m" }
         }
     },
-    pais:'França',
+    
     França: {
+        seleçao:"Francesa",
         pais: "França",
         jogadores: {
             Mbappe: { jogador: "Kylian Mbappé", gols: 46, altura: "1.78m" },
@@ -39,8 +42,9 @@ const paises = {
             Giroud: { jogador: "Olivier Giroud", gols: 53, altura: "1.93m" }
         }
     },
-    pais:'Alemanha',
+    
     Alemanha: {
+        seleçao:"Alemã",
         pais: "Alemanha",
         jogadores: {
             Muller: { jogador: "Thomas Müller", gols: 44, altura: "1.85m" },
@@ -48,8 +52,9 @@ const paises = {
             Gnabry: { jogador: "Serge Gnabry", gols: 22, altura: "1.75m" }
         }
     },
-    pais:'Espanha',
+    
     Espanha: {
+        seleçao:"Espanhola",
         pais: "Espanha",
         jogadores: {
             Morata: { jogador: "Álvaro Morata", gols: 30, altura: "1.90m" },
@@ -57,8 +62,9 @@ const paises = {
             Gavi: { jogador: "Gavi", gols: 3, altura: "1.73m" }
         }
     },
-    pais:'Portugal',
+    
     Portugal: {
+        seleçao:"Portuguesa",
         pais: "Portugal",
         jogadores: {
             CR7: { jogador: "Cristiano Ronaldo", gols: 128, altura: "1.87m" },
@@ -74,26 +80,20 @@ app.get('/', (req, res)=>{
     res.render('home', { paises: Object.keys(paises) });
 })
 
-app.get('/:pais', (req,res)=>{
+app.get('/:pais', (req, res)=>{
     const pais = req.params.pais
-    if(jogadores[pais]){
-        
-    }
+    const jogadorespais = paises[pais].jogadores
+    res.render('jogadores', {jogadores: Object.keys(jogadorespais), pais})
 })
 
-app.get('/copadomundo/:pais', (req, res) =>{
+app.get('/:pais/:jogador', (req,res)=>{
     const pais = req.params.pais
-    if(paises[pais]){
-        res.json(paises[pais])
-    }
-})
+    const jogador = req.params.jogador
+    const gols = paises[pais].jogadores[jogador].gols
+    const altura = paises[pais].jogadores[jogador].altura
+    const seleçao = paises[pais].seleçao
 
-app.get('/copadomundo/:pais/:jogador', (req, res) =>{
-    const pais = req.params.pais 
-        const jogador = req.params.jogador
-           if(paises[pais].jogadores[jogador]){
-            res.json(paises[pais].jogadores[jogador])
-        }
+    res.render('futgrafia', {jogador, gols, altura, seleçao, pais})
     
 })
 
