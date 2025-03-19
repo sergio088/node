@@ -1,0 +1,86 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+}
+#ul{
+    list-style: none;
+}
+#content{
+    border: 2px, solid black;
+    max-width: 500px;
+    margin: auto;
+    border-color: black;
+    border-radius: 20px;
+    background-color: rgb(92, 238, 165);
+}
+
+#paises-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:10px;
+    margin: auto;
+    text-align: center;
+}
+
+.item img {
+    max-width: 100px; 
+    border-radius: 10px;
+    display: block;
+    margin: 0 auto; /* Centraliza a imagem */
+}
+.item p {
+    margin-top: 5px; /* Espaço entre a bandeira e o nome */
+    font-weight: bold;
+}
+.jogadores {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: auto;
+    text-align: center;
+}
+.voltar {
+    background-color: #f4f4f4;
+    display: flex;
+    margin: 5px 10px;
+    padding-left: 5px;
+    border: 2px solid black;
+    max-width: 50px;
+    border-radius: 10px;
+}
+#content-jogadores{
+    border: 2px solid black;
+    max-width: 700px;
+    margin: auto;
+    border-radius: 20px;
+    background-color: rgb(92, 238, 165);
+}
+
+.jogadores{
+    list-style: none;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+    margin: auto;
+}
+ 
+.header-jogador{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background: #ddd;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.info-jogador{
+    list-style: none;
+    display: none;
+    padding: 10px;
+    background-color: #f4f4f4;
+    margin-right:15px;
+}

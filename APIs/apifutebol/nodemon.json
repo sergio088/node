@@ -1,0 +1,6 @@
+{
+    "watch": ["api.js", "views", "public", "home.ejs"],
+    "ext": "js ejs css",
+    "exec": "node api.js"
+  }
+  

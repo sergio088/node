@@ -4,20 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    <div id="content jogadores">
+    <div id="content-jogadores">
             <div id="title jogadores">
                     <h1>jogadores de <%= pais %></h1>
             </div>
-            <div id="jogadores">
+            <div class="jogadores">
                 <ul>
-                    <% jogadores.forEach(jogadores => { %>
-                    <li><a href="/<%=pais%>/<%= jogadores%>"><%= jogadores%></a></li>
-                <% }) %>
+                        <% jogadoresnomes.forEach(jogador => { %>
+                            <li>
+                            <div class="header-jogador">
+                            <span ><%= jogador%></span>
+                            <button class="button-btn" >▼</button>
+                            </div>
+                            <div class="info-jogador">
+                                <ul>
+                                    <li>
+                                        <img src="<%=jogadores[jogador].foto%>" alt="foto do <%=jogador%>" width="150px">
+                                <p><%=jogador%></p>
+                                <p><%=jogadores[jogador].altura%></p>
+                                <p><%=jogadores[jogador].gols%> gols pela seleça <%=seleçao %></p>
+                                <p><%=jogadores[jogador].descriçao%></p>
+                                    </li>
+                            </div>
+                            <% }) %>            
                 </ul>
             </div>
-            <a href="/">Voltar</a>
+            <div class="voltar">
+                <a href="/">⟵</a>
+            </div>
+            
     </div>
+    <script src="/script.js"></script>
 </body>
 </html>

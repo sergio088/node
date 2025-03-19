@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
     <div id="content">
@@ -14,12 +14,16 @@
         <div id="subtitle">
             <h2>Paises Participantes</h2>
         </div>
-        <div id="paises">
-            <ul>
+        <div id="paises-grid">
                 <% paises.forEach(pais => { %>
-                    <li><a href="/<%= pais %>"><%= pais %></a></li>
+                    <div class="item">
+                        <a href="/<%= pais %>"> 
+                            <img id="img" src="<%= bandeiras[pais].bandeira %>" alt="Bandeira de <%= pais %>">
+                        </a>
+                        <p><%= pais %></p>
+                    </div>
+                        
                 <% }); %>
-            </ul>
             
         </div>
     </div>
